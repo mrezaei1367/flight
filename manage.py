@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 import os
 import sys
+from flight.project_environment import PROJECT_ENV
+from flight.default_values import (PRODUCTION_ENVIRONMENT,
+                                   DEVELOPMENT_ENVIRONMENT
+                                   )
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flight.settings')
+    if PROJECT_ENV==PRODUCTION_ENVIRONMENT:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flight.settings.production_settings')
+    elif PROJECT_ENV==DEVELOPMENT_ENVIRONMENT:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flight.settings.development_settings')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flight.settings.local_settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
