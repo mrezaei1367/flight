@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-# AUTH_USER_MODEL = 'flight.User'
+AUTH_USER_MODEL = 'users.User'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'corsheaders',
-    'base'
+    'base',
+    'authentication',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -75,9 +77,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'flight.wsgi.application'
 
-SECURITY_TOKEN_CREATOR = 'security.utils.jwt_token_creator'
+SECURITY_TOKEN_CREATOR = 'authentication.utils.jwt_token_creator'
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+}
+
+SECURITY_AUTH_SERIALIZERS = {
+    'SECURITY_TOKEN_SERIALIZER': 'authentication.AUTH_SERIALIZERS.TOKEN_SERIALIZER',
 }
 
 REST_FRAMEWORK = {

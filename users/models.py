@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -36,7 +36,7 @@ class UserManager(BaseUserManager):
         return self._create_user(username, password, email, True, True, **extra_fields)
 
 
-class User(Base, AbstractBaseUser, PermissionsMixin):
+class User(Base, AbstractBaseUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
