@@ -9,6 +9,7 @@ from .utils import import_callable
 from .settings import TOKEN_CREATOR,TOKEN_SERIALIZER
 from .serializsers import SignupSerializer,LoginPassSerializer
 from .models import TokenByIPPayload
+from users.models import User
 
 
 create_token = import_callable(TOKEN_CREATOR)
@@ -34,7 +35,7 @@ class SignupView(GenericAPIView):
             UserModel=get_user_model()
             self.serializer.is_valid(raise_exception=True)
             usr=UserModel.objects.create(
-                username=self.serializer.validated_data['email'],
+                username=self.serializer.validated_data['username'],
                 password=self.serializer.validated_data['password'],
                 address=self.serializer.validated_data['address'],
                 first_name=self.serializer.validated_data['first_name'],
@@ -43,13 +44,14 @@ class SignupView(GenericAPIView):
                 enabled=True,
                 email=self.serializer.validated_data['email']
             )
+            # usr.set_password(self.serializer.validated_data['password'])
             # user=UserModel.objects.get(username=usr.username)
             token = create_token(self.token_model, usr, request)
-            authenticate(mobile=self.serializer.validated_data['email'], token_key=token.key)
+            authenticate(username=self.serializer.validated_data['username'], token_key=token.key)
             return Response({'message': 'Successfully',
                              'token': token.key,
                              'id': usr.id,
-                             'emil': usr.username,
+                             'username': usr.username,
                              'status': 200
                              },
                             status.HTTP_200_OK)

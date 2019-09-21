@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -31,18 +31,18 @@ class UserManager(BaseUserManager):
             'birth_date': timezone.now(),
             'birth_place': 'Tehran',
             'address': 'Tehran',
-            'is_superuser':True
+            'is_superuser': True
         })
         return self._create_user(username, password, email, True, True, **extra_fields)
 
 
-class User(Base, AbstractBaseUser):
+class User(Base, AbstractBaseUser,PermissionsMixin):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
     objects = UserManager()
-    username = models.EmailField(_('user name'), max_length=255, unique=True,db_index=True)
+    username = models.CharField(_('user name'), max_length=255, unique=True,db_index=True)
     first_name = models.CharField(_('first name'), max_length=40,null=True, blank=True)
     last_name = models.CharField(_('last name'), max_length=80,null=True, blank=True)
     email = models.EmailField(_('email address'), max_length=255, null=True, blank=True)
