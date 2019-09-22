@@ -1,18 +1,8 @@
-# import datetime
-# from django.db.models import Q
-# import django_filters
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.generics import GenericAPIView
-from rest_framework import filters
-from django_filters.rest_framework import FilterSet
-# from rest_framework.decorators import action
-
-from base.views import BaseModelViewset
-from base.pagination import BasePagination
 from .serializers import UserProfileSerializer
-from .models import User
 
 
 class UserProfileView(GenericAPIView):

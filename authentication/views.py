@@ -53,7 +53,7 @@ class SignupView(GenericAPIView):
                              'username': usr.username,
                              'status': 200
                              },
-                            status.HTTP_200_OK)
+                            status.HTTP_201_CREATED)
 
         except Exception as e:
             if settings.DEBUG:
