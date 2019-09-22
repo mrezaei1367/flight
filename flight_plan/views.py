@@ -31,7 +31,7 @@ class FlightViewSet(BaseModelViewset):
             if destination:
                 queryset=queryset.filter(destination__icontains=destination)
             if scheduled_date:
-                queryset=queryset.filter(scheduled_date=scheduled_date)
+                queryset=queryset.filter(scheduled_date__date=scheduled_date)
             queryset=queryset.order_by('scheduled_date')
             page = self.paginate_queryset(queryset)
             serializer=FlightSerializer(page,many=True)
