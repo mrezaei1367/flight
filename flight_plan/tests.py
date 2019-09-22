@@ -2,6 +2,7 @@ from users.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from .models import Flight
 
 
 
@@ -27,7 +28,7 @@ class Flight_planTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         # URL for flight
         self.flight_url = reverse('flight-list')
-        self.flight_detail_url = reverse('flight-detail')
+        # self.flight_detail_url = reverse('flight-detail')
         self.ADD_FLIGHT_METHOD="POST"
         self.UPDATE_FLIGHT_METHOD="PUT"
         self.LIST_FLIGHT_METHOD="GET"
@@ -47,6 +48,7 @@ class Flight_planTest(APITestCase):
 
         response = self.client.post(self.flight_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Flight.objects.count(), 1)
 
     def test_get_list(self):
         response = self.client.get(self.flight_url)
@@ -55,12 +57,14 @@ class Flight_planTest(APITestCase):
     def test_update_flight(self):
         data = {
             "flight_name": "IGST",
+            "flight_number": "2HTgG645",
             "scheduled_date": "2019-10-25T00:00:00Z",
             "expected_arrival_date": "2019-10-25T15:00:00Z",
             "departure": "Tehran",
             "destination": "Istanbul",
-            "flight_duration": "7:30",
+            "flight_duration": "5:30",
             "fare": 4230000.0
         }
-        response = self.client.put(self.flight_detail_url,)
+        response = self.client.post(self.flight_url, data)
+        response = self.client.get(reverse('flight-detail',args=(response.data["id"])))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
