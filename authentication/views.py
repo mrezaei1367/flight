@@ -36,7 +36,6 @@ class SignupView(GenericAPIView):
             self.serializer.is_valid(raise_exception=True)
             usr=UserModel.objects.create(
                 username=self.serializer.validated_data['username'],
-                password=self.serializer.validated_data['password'],
                 address=self.serializer.validated_data['address'],
                 first_name=self.serializer.validated_data['first_name'],
                 last_name=self.serializer.validated_data['last_name'],
@@ -44,8 +43,8 @@ class SignupView(GenericAPIView):
                 enabled=True,
                 email=self.serializer.validated_data['email']
             )
-            # usr.set_password(self.serializer.validated_data['password'])
-            # user=UserModel.objects.get(username=usr.username)
+            usr.set_password(self.serializer.validated_data['password'])
+            usr.save()
             token = create_token(self.token_model, usr, request)
             authenticate(username=self.serializer.validated_data['username'], token_key=token.key)
             return Response({'message': 'Successfully',
