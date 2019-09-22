@@ -4,6 +4,6 @@ from authentication.views import (SignupView,
                             )
 
 urlpatterns = [
-    url(r'^signup/$', SignupView.as_view()),
-    url(r'^login/$', LoginByPasswordView.as_view()),
+    url(r'^signup/$', SignupView.as_view(),name="signup"),
+    url(r'^login/$', LoginByPasswordView.as_view(),name="login"),
 ]
