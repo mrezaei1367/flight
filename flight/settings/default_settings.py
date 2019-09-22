@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'base',
     'authentication',
-    'users'
+    'users',
+    'flight_plan'
 ]
 
 MIDDLEWARE = [
