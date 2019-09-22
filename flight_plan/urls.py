@@ -4,7 +4,7 @@ from .views import FlightViewSet
 
 
 router = DefaultRouter()
-router.register(r'', FlightViewSet)
+router.register(r'', FlightViewSet,base_name='flight')
 
 
 urlpatterns = [
