@@ -31,7 +31,7 @@ Then install the dependencies:
 
 ```sh
 (flightEnv)$ cd flight
-(flightEnv)$ pip install -r requirements.txt
+(flightEnv)$ pip install -r requirement.txt
 ```
 Note the `(flightEnv)` in front of the prompt.
 
