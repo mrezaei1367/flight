@@ -43,6 +43,13 @@ Once `pip` has finished downloading the dependencies:
 ```
 And navigate to `http://127.0.0.1:8000/`.
 
+## Helps
+I used [JWT] https://jpadilla.github.io/django-rest-framework-jwt/ for authentication so aftre calling signup API you get a token in response that should be used for the protected APIs. 
+The signup and login API are unprotected but the other APIs need to send authorization token in header of HTTP request and it has bareer "JWT" in the first of token. There is an example for calling an API with token:
+```sh
+curl -X GET  http://127.0.0.1:8000/api/v1/flight/ -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImRyZmdkeWciLCJleHAiOjE1NjkzMzQzMDMsImVtYWlsIjoidGVzdEB5YWhvby5jb20iLCJpcCI6IjEyNy4wLjAuMSJ9.WLOabMLFYprawM3GfDjxGwe7Yp8sAO-MavB8ziHimcY'
+```
+
 
 ## Tests
 
