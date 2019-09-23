@@ -9,7 +9,6 @@ class AuthenticationTest(APITestCase):
     def setUp(self):
         # We want to go ahead and originally create a user.
         self.test_user = User.objects.create_user(username='testuser', password='testpassword', email='test@yahoo.com')
-
         # URL for creating an account.
         self.sign_up_url = reverse('signup')
         # URL for log in
@@ -28,23 +27,12 @@ class AuthenticationTest(APITestCase):
         }
 
     def test_register_user(self):
-        """
-        Ensure we can create a new user and a valid token is created with it.
-        """
-
         response = self.client.post(self.sign_up_url, self.data, format='json')
-
-        # We want to make sure we have two users in the database..
         self.assertEqual(User.objects.count(), 2)
-        # And that we're returning a 201 created code.
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data['username'], self.data['username'])
-        self.assertFalse('password' in response.data)
 
     def test_create_user_with_short_password(self):
-        """
-        Ensure user is not created for password lengths less than 8.
-        """
         self.data["username"] = "foobar"
         self.data["password"] = "foo"
         self.data["re_password"] = "foo"

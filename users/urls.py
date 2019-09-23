@@ -4,7 +4,7 @@ from .views import UserProfileView
 
 
 urlpatterns = [
-    url(r'^profile/$', UserProfileView.as_view()),
+    url(r'^profile/$', UserProfileView.as_view(),name="profile"),
 
 
 ]
