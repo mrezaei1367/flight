@@ -44,12 +44,17 @@ Once `pip` has finished downloading the dependencies:
 And navigate to `http://127.0.0.1:8000/`.
 
 ## Helps
-I used [JWT] https://jpadilla.github.io/django-rest-framework-jwt/ for authentication so aftre calling signup API you get a token in response that should be used for the protected APIs. 
+I used [JWT](https://jpadilla.github.io/django-rest-framework-jwt/) for authentication so aftre calling signup API you get a token in response that should be used for the protected APIs. 
 The signup and login API are unprotected but the other APIs need to send authorization token in header of HTTP request and it has bareer "JWT" in the first of token. There is an example for calling an API with token:
 ```sh
 curl -X GET  http://127.0.0.1:8000/api/v1/flight/ -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImRyZmdkeWciLCJleHAiOjE1NjkzMzQzMDMsImVtYWlsIjoidGVzdEB5YWhvby5jb20iLCJpcCI6IjEyNy4wLjAuMSJ9.WLOabMLFYprawM3GfDjxGwe7Yp8sAO-MavB8ziHimcY'
 ```
-
+## Swagger
+Also there are the list of all API with the related input in http://127.0.0.1:8000/swagger/ so you see the unprotected APIs first time but you can create a super user with below instruction:
+```sh
+(flightEnv)$ python manage.py createsuperuser
+```
+Then click on login button in Swagger page and use the credential that you set for your user. Then you see all the APIs.
 
 ## Tests
 
