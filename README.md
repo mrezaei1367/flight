@@ -37,7 +37,9 @@ Note the `(flightEnv)` in front of the prompt.
 
 Once `pip` has finished downloading the dependencies:
 ```sh
-(flightEnv)$ python manage.py makemigrations
+(flightEnv)$ python manage.py makemigrations users
+(flightEnv)$ python manage.py makemigrations authentication
+(flightEnv)$ python manage.py makemigrations flight_plan
 (flightEnv)$ python manage.py migrate
 (flightEnv)$ python manage.py runserver
 ```
