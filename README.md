@@ -57,7 +57,7 @@ curl -X GET \
 ```
 
 ## Swagger
-Also there are the list of all API with the related input in http://127.0.0.1:8000/swagger/ so you see the unprotected APIs first time but you can create a super user with below instruction:
+Also there are the list of all API with the related input in http://127.0.0.1:8000/swagger/ so you see the unprotected APIs at the first time but you can create a super user with below instruction:
 ```sh
 (flightEnv)$ python manage.py createsuperuser
 ```
