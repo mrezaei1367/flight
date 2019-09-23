@@ -49,6 +49,13 @@ The signup and login API are unprotected but the other APIs need to send authori
 ```sh
 curl -X GET  http://127.0.0.1:8000/api/v1/flight/ -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImRyZmdkeWciLCJleHAiOjE1NjkzMzQzMDMsImVtYWlsIjoidGVzdEB5YWhvby5jb20iLCJpcCI6IjEyNy4wLjAuMSJ9.WLOabMLFYprawM3GfDjxGwe7Yp8sAO-MavB8ziHimcY'
 ```
+Also for search flight API there is a sample:
+```sh
+curl -X GET \
+  'http://127.0.0.1:8000/api/v1/flight/?flight_name=TH321&departure=Tehran&destination=Stockholm&scheduled_date=2019-10-22' \
+  -H 'Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImRyZmdkeWciLCJleHAiOjE1NjkzMzQzMDMsImVtYWlsIjoidGVzdEB5YWhvby5jb20iLCJpcCI6IjEyNy4wLjAuMSJ9.WLOabMLFYprawM3GfDjxGwe7Yp8sAO-MavB8ziHimcY'
+```
+
 ## Swagger
 Also there are the list of all API with the related input in http://127.0.0.1:8000/swagger/ so you see the unprotected APIs first time but you can create a super user with below instruction:
 ```sh
