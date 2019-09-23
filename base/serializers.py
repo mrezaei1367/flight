@@ -18,8 +18,8 @@ class ErrorHandlerSerializerMixin(BaseSerializer):
     def normalize_errors(self, errors):
         detail = []
         for key, value in errors.detail.items():
-            error_code=""
-            error_detail=value[0].__str__()
+            error_code = ""
+            error_detail = value[0].__str__()
             detail.append({
                 'error_status': self.VALIDATION_ERRORS_STATUS_CODE.get(key, self.UNCATEGORIZED_ERRORS),
                 'error_code': error_code,

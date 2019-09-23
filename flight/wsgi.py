@@ -1,5 +1,5 @@
 """
-WSGI config for flight project.
+WSGI config for flight project by Mohammad Rezaei.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -5,13 +5,10 @@ from rest_framework.test import APITestCase
 from authentication.models import TokenByIPPayload
 
 
-
 class AuthenticationTest(APITestCase):
-
-
     def setUp(self):
         # We want to go ahead and originally create a user.
-        self.test_user = User.objects.create_user(username='testuser', password='testpassword',email='test@yahoo.com')
+        self.test_user = User.objects.create_user(username='testuser', password='testpassword', email='test@yahoo.com')
 
         # URL for creating an account.
         self.sign_up_url = reverse('signup')
@@ -20,7 +17,7 @@ class AuthenticationTest(APITestCase):
         self.data = {
             "username": "testuser2",
             "password": "somepassword",
-            "re_password":"somepassword",
+            "re_password": "somepassword",
             "address": "tehran",
             "mobile_number": "09128122752",
             "first_name": "Mohammad",
@@ -29,7 +26,6 @@ class AuthenticationTest(APITestCase):
             "birth_place": "Tehran",
             "email": "test@yahoo.com"
         }
-
 
     def test_register_user(self):
         """
@@ -49,9 +45,9 @@ class AuthenticationTest(APITestCase):
         """
         Ensure user is not created for password lengths less than 8.
         """
-        self.data["username"]="foobar"
-        self.data["password"]="foo"
-        self.data["re_password"]="foo"
+        self.data["username"] = "foobar"
+        self.data["password"] = "foo"
+        self.data["re_password"] = "foo"
 
         response = self.client.post(self.sign_up_url, self.data, format='json')
         user = User.objects.latest('id')
@@ -61,7 +57,6 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(token_count, 0)
 
     def test_create_user_with_no_password(self):
-
         self.data["username"] = "foobar"
         self.data["password"] = ""
         self.data["re_password"] = ""
@@ -70,7 +65,6 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(User.objects.count(), 1)
 
     def test_create_user_with_too_long_username(self):
-
         self.data["username"] = "foo" * 30
         self.data["password"] = "12345678"
         self.data["re_password"] = "12345678"
@@ -89,7 +83,6 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(User.objects.count(), 1)
 
     def test_create_user_with_preexisting_username(self):
-
         self.data["username"] = "testuser"
         self.data["password"] = "12345678"
         self.data["re_password"] = "12345678"
@@ -99,12 +92,11 @@ class AuthenticationTest(APITestCase):
         self.assertEqual(User.objects.count(), 1)
 
     def wrong_password_attempts_by_username(self):
-
         self.data["username"] = "wronuser"
         self.data["password"] = "12345678"
         self.data["re_password"] = "12345678"
 
         response = self.client.post(self.sign_up_url, self.data, format='json')
-        self.data["password"]="87654321"
+        self.data["password"] = "87654321"
         response = self.client.post(self.log_in_url, self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

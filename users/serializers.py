@@ -3,10 +3,9 @@ from .models import User
 
 
 class UserProfileSerializer(ModelSerializer):
-
     class Meta:
-        model=User
-        fields=[
+        model = User
+        fields = [
             "username",
             'address',
             'mobile_number',

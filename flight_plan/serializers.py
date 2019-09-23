@@ -3,11 +3,10 @@ from .models import Flight
 from base.serializers import ErrorHandlerSerializerMixin
 
 
-class FlightSerializer(ModelSerializer,ErrorHandlerSerializerMixin):
-
+class FlightSerializer(ModelSerializer, ErrorHandlerSerializerMixin):
     class Meta:
-        model=Flight
-        fields=[
+        model = Flight
+        fields = [
             'id',
             'flight_name',
             'flight_number',

@@ -1,6 +1,5 @@
 from django.conf import settings
 
-
 TOKEN_CREATOR = getattr(settings, 'SECURITY_TOKEN_CREATOR')
 SERIALIZERS = getattr(settings, 'SECURITY_AUTH_SERIALIZERS', {})
 

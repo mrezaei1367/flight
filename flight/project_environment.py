@@ -1,4 +1,3 @@
+from .default_values import *
 
-
-PROJECT_ENV="development"
-#PROJECT_ENV="production"
+PROJECT_ENV = DEVELOPMENT_ENVIRONMENT

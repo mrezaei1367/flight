@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -6,10 +6,9 @@ from base.models import Base
 
 
 class UserManager(BaseUserManager):
-
     use_in_migrations = True
 
-    def _create_user(self, username, password, email, is_staff, is_active,*args,
+    def _create_user(self, username, password, email, is_staff, is_active, *args,
                      **extra_fields):
         """
         Creates and saves a User with the given username and password.
@@ -36,15 +35,15 @@ class UserManager(BaseUserManager):
         return self._create_user(username, password, email, True, True, **extra_fields)
 
 
-class User(Base, AbstractBaseUser,PermissionsMixin):
+class User(Base, AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
     objects = UserManager()
-    username = models.CharField(_('user name'), max_length=255, unique=True,db_index=True)
-    first_name = models.CharField(_('first name'), max_length=40,null=True, blank=True)
-    last_name = models.CharField(_('last name'), max_length=80,null=True, blank=True)
+    username = models.CharField(_('user name'), max_length=255, unique=True, db_index=True)
+    first_name = models.CharField(_('first name'), max_length=40, null=True, blank=True)
+    last_name = models.CharField(_('last name'), max_length=80, null=True, blank=True)
     email = models.EmailField(_('email address'), max_length=255, null=True, blank=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
                                    help_text='Designates whether the user can log into this admin site.')
@@ -56,8 +55,8 @@ class User(Base, AbstractBaseUser,PermissionsMixin):
     birth_date = models.DateField(_('Birth Date'), null=True)
     birth_place = models.CharField(_('Birth Place'), null=True, max_length=100)
     last_certificate = models.CharField(_('last certificate'), null=True, max_length=300)
-    address = models.TextField(_('Address'), null=True,blank=True)
-    mobile_number = models.CharField(_('cell phone'), max_length=20,null=True, blank=True)
+    address = models.TextField(_('Address'), null=True, blank=True)
+    mobile_number = models.CharField(_('cell phone'), max_length=20, null=True, blank=True)
     USERNAME_FIELD = 'username'
 
     def get_full_name(self):
