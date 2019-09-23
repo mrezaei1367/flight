@@ -63,6 +63,14 @@ class Flight_planTest(APITestCase):
         response = flight_detail(request, pk=response.data["id"], data=self.flight_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_delete_flight(self):
+        response = self.client.post(self.flight_url, self.flight_data)
+        request = self.factory.delete("/flight", HTTP_AUTHORIZATION=self.token)
+        flight_detail = FlightViewSet.as_view({'delete': 'destroy'})
+        response = flight_detail(request, pk=response.data["id"])
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Flight.objects.filter(soft_deleted=0).count(), 0)
+
     def test_search_flight_right_params(self):
         params = {
             "departure": "Tehran",
