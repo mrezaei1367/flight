@@ -2,13 +2,6 @@
 
 ## Setup
 
-The first thing to do is to clone the repository:
-
-```sh
-$ git clone https://github.com/mrezaei1367/flight.git
-$ cd sample-django-app
-```
-
 Create a virtual environment (with python 3) to install dependencies in and activate it:
 
 ### Install **pip** first
@@ -26,6 +19,13 @@ Create a virtual environment (with python 3) to install dependencies in and acti
 ### Active your virtual environment:    
     
     source flightEnv/bin/activate
+
+The second thing to do is to clone the repository:
+
+```sh
+$ git clone https://github.com/mrezaei1367/flight.git
+
+```
 
 Then install the dependencies:
 
