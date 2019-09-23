@@ -62,7 +62,8 @@ Also there are the list of all API with the related input in http://127.0.0.1:80
 (flightEnv)$ python manage.py createsuperuser
 ```
 Then click on login button in Swagger page and use the credential that you set for your user. Then you see all the APIs like this image:
-![alt text](https://pasteboard.co/IyKHwz8.png)
+
+![swagger](http://s5.picofile.com/file/8373245576/Screenshot_from_2019_09_23_18_21_07.png)
 
 ## Tests
 
